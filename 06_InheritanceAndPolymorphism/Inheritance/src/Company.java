@@ -20,9 +20,7 @@ public class Company implements Comparable<Company> {
         employees.remove(employee);
     }
 
-    public int getIncome() {
-        return income;
-    }
+    public int getIncome() { return income; }
 
     public List<Integer> getEmployees() {
         return employees;

@@ -1,10 +1,10 @@
-class TopManager extends Company implements Employee {
+class TopManager implements Employee {
+    private Company company = new Company();
 
     @Override
     public int getMonthSalary() {
         int monthSalary = 100_000;
-//        Company company = new Company();
-//        int income = company.income;
+        int income = company.getIncome();
         if (income > 10_000_000) {
             monthSalary = monthSalary + 150_000;
         }
