@@ -2,11 +2,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Company implements Comparable<Company> {
+public class Company {
 
-    int income = (int) (0 + 50000000 * Math.random());
+    int income = (int) (0 + 50_000_000 * Math.random());
     List<Integer> employees = new ArrayList();
-    int monthSalary;
 
     public void hire(int employee) {
         employees.add(employee);
@@ -22,26 +21,17 @@ public class Company implements Comparable<Company> {
 
     public int getIncome() { return income; }
 
-    public List<Integer> getEmployees() {
-        return employees;
-    }
-
-    public int getMonthSalary() {
-        return monthSalary;
-    }
-
-
-    @Override
-    public int compareTo(Company company) {
-        if (getMonthSalary() > company.getMonthSalary()) {
-            return 1;
-        }
-        if (getEmployees().get(0) > company.getEmployees().get(0)) {
-            return -1;
-        }
-        return 0;
-
-    }
+//    @Override
+//    public int compareTo(Company company) {
+//        if (getMonthSalary() > company.getMonthSalary()) {
+//            return 1;
+//        }
+//        if (getEmployees().get(0) > company.getEmployees().get(0)) {
+//            return -1;
+//        }
+//        return 0;
+//
+//    }
 
 
     List<Integer> getTopSalaryStaff(int count) {
