@@ -1,17 +1,18 @@
 class TopManager implements Employee {
-
-    int monthSalary = 100_000;
+    String name;
+    Integer salary = 100_000;
 
     public TopManager(Company company) {
+        this.name = getClass().getName();
         int income = company.getIncome();
         if (income > 10_000_000) {
-            monthSalary += 150_000;
+            salary += 150_000;
         }
-        company.hire(getMonthSalary());
+        this.salary = getMonthSalary();
     }
 
     @Override
-    public int getMonthSalary() {
-        return monthSalary;
+    public Integer getMonthSalary() {
+        return salary;
     }
 }

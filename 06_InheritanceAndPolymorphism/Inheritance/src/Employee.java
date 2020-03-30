@@ -1,3 +1,4 @@
 interface Employee {
-    public int getMonthSalary();
+
+    public Integer getMonthSalary();
 }

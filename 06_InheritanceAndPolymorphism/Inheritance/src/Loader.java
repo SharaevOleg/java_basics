@@ -5,13 +5,13 @@ public class Loader {
         Company company = new Company();
 
         for (int i = 0; i < 180; i++) {
-            new Operator(company);
+            company.hire(new Operator(company));
         }
         for (int i = 0; i < 80; i++) {
-            new Manager(company);
+            company.hire(new Manager(company));
         }
         for (int i = 0; i < 10; i++) {
-            new TopManager(company);
+            company.hire(new TopManager(company));
         }
 
         company.getTopSalaryStaff(15);
