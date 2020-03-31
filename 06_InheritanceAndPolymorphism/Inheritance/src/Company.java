@@ -26,9 +26,12 @@ public class Company {
     List<Employee> getTopSalaryStaff(int count) {
         int size = employees.size();
         System.out.println("Список " + count + " зарплат по убыванию:");
-        Collections.sort(employees, ((o1, o2) -> {
-            return o1.getMonthSalary().compareTo(o2.getMonthSalary());
-        }));
+        Collections.sort(employees, new Comparator<Employee>() {
+            @Override
+            public int compare(Employee o1, Employee o2) {
+                return o1.getMonthSalary().compareTo(o2.getMonthSalary());
+            }
+        });
         Collections.reverse(employees);
 
         int i = 0;
