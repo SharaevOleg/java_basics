@@ -9,25 +9,18 @@ public class Main {
 
     public static void main(String[] args) {
 
-
-/*
-Используя библиотеку airport.jar,
-распечатать время вылета и модели самолётов,
-вылетающие в ближайшие 2 часа */
-
-
-//        calendar.setTime(emplor.getWorkStart());
-//        return calendar.get(Calendar.YEAR) == 2017;
-
         Airport airport = Airport.getInstance();
-        List<Terminal> terminals = airport.getTerminals();
-        List<Flight> flights = null;
-        int i = terminals.size();
-        int x = i;
-        while (x > 0) {
-            flights = terminals.get(x - 1).getFlights();
-            x--;
-        }
+//        List<Terminal> terminals = airport.getTerminals();
+//        List<Flight> flights = null;
+//        int i = terminals.size();
+//        int x = i;
+//        while (x > 0) {
+//            flights = terminals.get(x - 1).getFlights();
+//            x--;
+//        }
+
+        List<Flight> flights = new ArrayList<>();
+        airport.getTerminals().forEach(t -> flights.addAll(t.getFlights()));
 
         flights.stream().filter(f -> {
             Calendar calendar = Calendar.getInstance();
@@ -39,6 +32,7 @@ public class Main {
                     calendar.add(Calendar.HOUR_OF_DAY, +2);
                     return f.getDate().before(calendar.getTime());
                 })
+                .filter(flight -> flight.getType().equals(Flight.Type.DEPARTURE))
                 .sorted(Comparator.comparing(Flight::getDate))
                 .forEach(System.out::println);
     }
