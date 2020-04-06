@@ -14,6 +14,8 @@ public class Loader {
             company.hire(new TopManager(company));
         }
 
+        System.out.println("Всего сотрудников - "+company.employees.size());
+
         company.getTopSalaryStaff(15);
         company.getLowestSalaryStaff(30);
 
@@ -22,6 +24,7 @@ public class Loader {
             int randomEmploye = (int) (0 + size * Math.random());
             company.fire(randomEmploye);
         }
+        System.out.println("Всего сотрудников - "+company.employees.size());
 
         company.getTopSalaryStaff(15);
         company.getLowestSalaryStaff(30);

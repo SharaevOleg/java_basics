@@ -1,15 +1,14 @@
 public class Operator implements Employee {
-    String name;
+
     Integer salary;
 
     public Operator(Company company) {
-        this.name = getClass().getName();
-        this.salary = getMonthSalary();
+        salary = 40000;
     }
 
     @Override
     public Integer getMonthSalary() {
-        int monthSalary = 60000;
+        int monthSalary = salary;
         return monthSalary;
     }
 }
