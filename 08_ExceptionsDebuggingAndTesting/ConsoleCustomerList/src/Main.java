@@ -19,14 +19,23 @@ public class Main
             String command = scanner.nextLine();
             String[] tokens = command.split("\\s+", 2);
             if(tokens[0].equals("add")) {
-                executor.addCustomer(tokens[1]);
+               try {
+                   executor.addCustomer(tokens[1]);
+               }catch (IndexOutOfBoundsException ix){
+                   System.out.println(ix.getMessage());
+//                   ix.printStackTrace();
+               }
             }
             else if(tokens[0].equals("list")) {
                 executor.listCustomers();
             }
             else if(tokens[0].equals("remove"))
             {
-                executor.removeCustomer(tokens[1]);
+                try {
+                    executor.removeCustomer(tokens[1]);
+                }catch (IndexOutOfBoundsException ix){
+                    System.out.println(ix.getMessage());
+                }
             }
             else if(tokens[0].equals("count")) {
                 System.out.println("There are " + executor.getCount() + " customers");
