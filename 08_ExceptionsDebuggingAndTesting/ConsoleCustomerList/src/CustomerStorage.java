@@ -14,26 +14,20 @@ public class CustomerStorage {
 
         try {
             String name = components[0] + " " + components[1];
-
-            try {
-                String sPhoneNumber = components[3];
-                String sEmail = components[2];
-                Pattern pattern = Pattern.compile("^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}$");
-                Pattern patternEmail = Pattern.compile("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]" +
-                        "+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$");
-                Matcher matcher = pattern.matcher(sPhoneNumber);
-                Matcher matcherEmail = patternEmail.matcher(sEmail);
-                if (matcher.matches() && matcherEmail.matches()) {
-                    storage.put(name, new Customer(name, components[3], components[2]));
-                    System.out.println("Phone Number & Email valid");
-                } else {
-                    System.out.println("Phone Number or Email not valid");
-                }
-            } catch (IndexOutOfBoundsException ix) {
-                System.out.println(ix.getMessage());
+            String sPhoneNumber = components[3];
+            String sEmail = components[2];
+            Pattern pattern = Pattern.compile("^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}$");
+            Pattern patternEmail = Pattern.compile("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]" +
+                    "+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$");
+            Matcher matcher = pattern.matcher(sPhoneNumber);
+            Matcher matcherEmail = patternEmail.matcher(sEmail);
+            if (matcher.matches() && matcherEmail.matches()) {
+                storage.put(name, new Customer(name, components[3], components[2]));
+            } else {
+                throw new IllegalArgumentException("Phone Number or Email not valid");
             }
-        } catch (IndexOutOfBoundsException ix) {
-            System.out.println(ix.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
