@@ -17,7 +17,7 @@ public class RouteCalculator
         this.stationIndex = stationIndex;
     }
 
-    public List<Station> getShortestRoute(Station from, Station to)
+       public List<Station> getShortestRoute(Station from, Station to)
     {
         List<Station> route = getRouteOnTheLine(from, to);
         if(route != null) {
@@ -113,6 +113,7 @@ public class RouteCalculator
                 }
             }
         }
+        if (route.size() == 0) return null; //added string
         return route;
     }
 
