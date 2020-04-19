@@ -1,68 +1,48 @@
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
+import java.util.List;
 
-public class CopyFolder {
-    static String source;
-    static String des;
+import static java.util.stream.Collectors.toList;
 
-    static void dr(File fl, boolean first) throws IOException {
-        if (fl.isDirectory()) {
-            createDir(fl.getPath(), first);
-            File flist[] = fl.listFiles();
-            for (int i = 0; i < flist.length; i++) {
-                if (flist[i].isDirectory()) {
-                    dr(flist[i], false);
-                } else {
-                    copyData(flist[i].getPath());
-                }
+class СopyFolder {
+
+    public static void main(String[] args) throws Exception {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        for (; ; ) {
+            System.out.println("Enter the source path - ");
+            File sourceFile = new File(reader.readLine());
+            if (!sourceFile.exists()) {
+                System.out.println("File not found");
+                continue;
             }
-        } else {
-            copyData(fl.getPath());
+            System.out.println("Enter the destination path - ");
+            File destinationFile = new File(reader.readLine() + File.separator);
+            if (!destinationFile.exists()) destinationFile.mkdirs();
+
+            copyFolders(sourceFile.toPath(), destinationFile.toPath());
         }
     }
 
-    private static void copyData(String name) throws IOException {
-        int i;
-        String str = des;
-        for (i = source.length(); i < name.length(); i++) {
-            str = str + name.charAt(i);
-        }
-        System.out.println(str);
-        FileInputStream fis = new FileInputStream(name);
-        FileOutputStream fos = new FileOutputStream(str);
-        byte[] buffer = new byte[1024];
-        int noOfBytes = 0;
-        while ((noOfBytes = fis.read(buffer)) != -1) {
-            fos.write(buffer, 0, noOfBytes);
-        }
-    }
+    static void copyFolders(Path sourse, Path destination) {
+        try {
+            List<Path> sources = Files.walk(sourse).collect(toList());
+            List<Path> destinations = sources.stream()
+                    .map(sourse::relativize)
+                    .map(destination::resolve)
+                    .collect(toList());
+            for (int i = 0; i < sources.size(); i++) {
 
-    private static void createDir(String name, boolean first) {
-        int i;
-        if (first == true) {
-            for (i = name.length() - 1; i > 0; i--) {
-                if (name.charAt(i) == 92) {
-                    break;
-                }
+                Files.copy(sources.get(i), destinations.get(i), StandardCopyOption.REPLACE_EXISTING);
+                System.out.println(destinations.get(i));
             }
-            for (; i < name.length(); i++) {
-                des = des + name.charAt(i);
-            }
-        } else {
-            String str = des;
-            for (i = source.length(); i < name.length(); i++) {
-                str = str + name.charAt(i);
-            }
-            (new File(str)).mkdirs();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
-    }
-
-    public static void main(String args[]) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        System.out.print("enter source path : ");
-        source = br.readLine();
-        System.out.print("enter destination path : ");
-        des = br.readLine();
-        dr(new File(source), true);
     }
 }
