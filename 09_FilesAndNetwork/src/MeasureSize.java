@@ -32,7 +32,7 @@ public class MeasureSize {
 //            }
 //        }
 //    }
-//
+
 //    static void getSize() {
 //        if (size > GB) {
 //            System.out.println("Размер всех вложений папки - " + (double) size / GB + " Гб");
