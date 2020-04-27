@@ -1,4 +1,4 @@
-package ParserMosMetro.files;
+package ParserMosMetro;
 
 import java.io.IOException;
 import java.nio.file.Files;
