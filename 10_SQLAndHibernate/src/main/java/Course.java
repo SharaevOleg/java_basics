@@ -7,9 +7,7 @@ public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     private String name;
-
     private int duration;
 
     @Enumerated(EnumType.STRING)
