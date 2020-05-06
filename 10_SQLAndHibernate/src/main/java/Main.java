@@ -11,29 +11,29 @@ public class Main {
 
 
 
-        StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
-        Metadata metadata = new MetadataSources(registry).getMetadataBuilder().build();
-        SessionFactory sessionFactory = metadata.getSessionFactoryBuilder().build();
-
-        Session session = sessionFactory.openSession();
-
-        Course course = session.get(Course.class,1);
-        System.out.println(course.getName());
-
-        sessionFactory.close();
-
 //        StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
 //        Metadata metadata = new MetadataSources(registry).getMetadataBuilder().build();
 //        SessionFactory sessionFactory = metadata.getSessionFactoryBuilder().build();
 //
 //        Session session = sessionFactory.openSession();
-//        Transaction transaction = session.beginTransaction();
 //
-//        Course course = session.get(Course.class, 1);
-//        System.out.println(course.getTeacher().getName());
+//        Course course = session.get(Course.class,1);
+//        System.out.println(course.getName());
 //
-//        transaction.commit();
 //        sessionFactory.close();
+
+        StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
+        Metadata metadata = new MetadataSources(registry).getMetadataBuilder().build();
+        SessionFactory sessionFactory = metadata.getSessionFactoryBuilder().build();
+
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+
+        Course course = session.get(Course.class, 1);
+        System.out.println(course.getTeacher().getName());
+
+        transaction.commit();
+        sessionFactory.close();
 
 
     }
