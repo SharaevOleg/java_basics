@@ -5,15 +5,15 @@ import java.sql.Statement;
 
 public class JDBCExperiments {
     public static void main(String[] args) {
-        String url = "jdbc:mysql://localhost:3306/skillbox?useSSL=false&amp;serverTimezone=UTC&amp;allowPublicKeyRetrieval=true";
-        String urlNew = "jdbc:mysql://localhost:3306/skillbox?useLegacyDatetimeCode=false&serverTimezone=Australia/Sydney&useSSL=false";
+//        String url = "jdbc:mysql://localhost:3306/skillbox?useSSL=false&amp;serverTimezone=UTC&amp;allowPublicKeyRetrieval=true";
+        String url = "jdbc:mysql://localhost:3306/skillbox?useLegacyDatetimeCode=false&serverTimezone=Australia/Sydney&useSSL=false";
         String user = "root";
         String pass = "mmm333";
 
         try {
-            Connection connection = DriverManager.getConnection(urlNew, user, pass);
+            Connection connection = DriverManager.getConnection(url, user, pass);
             Statement statment = connection.createStatement();
-            ResultSet resultSet = statment.executeQuery("SELECT *, COUNT(course_name)/12\n" +
+            ResultSet resultSet = statment.executeQuery("SELECT course_name, COUNT(course_name)/12\n" +
                     "FROM skillbox.purchaselist\n" +
                     "GROUP BY course_name;");
 

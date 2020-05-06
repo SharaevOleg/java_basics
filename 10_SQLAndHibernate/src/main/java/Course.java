@@ -1,13 +1,16 @@
+import java.util.List;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Courses")
+@Table(name = "courses")
 public class Course {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private String name;
+
     private int duration;
 
     @Enumerated(EnumType.STRING)
@@ -16,22 +19,26 @@ public class Course {
 
     private String description;
 
-    @Column(name = "teacher_id")
-    private int teacherId;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "teacher_id")
+    private Teacher teacher;
 
     @Column(name = "students_count")
-    private int studentCount;
+    private Integer studentCount;
 
     private int price;
 
     @Column(name = "price_per_hour")
-    private float pricePerHour;
+    private Float pricePerHour;
 
-    public Integer getId() {
+    @OneToMany(mappedBy = "course")
+    private List<Subscription> subscriptions;
+
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -67,15 +74,7 @@ public class Course {
         this.description = description;
     }
 
-    public int getTeacherId() {
-        return teacherId;
-    }
-
-    public void setTeacherId(int teacherId) {
-        this.teacherId = teacherId;
-    }
-
-    public int getStudentCount() {
+    public Integer getStudentCount() {
         return studentCount;
     }
 
@@ -83,7 +82,7 @@ public class Course {
         this.studentCount = studentCount;
     }
 
-    public int getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
@@ -91,11 +90,36 @@ public class Course {
         this.price = price;
     }
 
-    public float getPricePerHour() {
+    public Float getPricePerHour() {
         return pricePerHour;
     }
 
     public void setPricePerHour(float pricePerHour) {
         this.pricePerHour = pricePerHour;
     }
+
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
+    }
+
+    public void setStudentCount(Integer studentCount) {
+        this.studentCount = studentCount;
+    }
+
+    public void setPricePerHour(Float pricePerHour) {
+        this.pricePerHour = pricePerHour;
+    }
+
+    public List<Subscription> getSubscriptions() {
+        return subscriptions;
+    }
+
+    public void setSubscriptions(List<Subscription> subscriptions) {
+        this.subscriptions = subscriptions;
+    }
+
 }
