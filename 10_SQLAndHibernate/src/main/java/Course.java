@@ -34,6 +34,9 @@ public class Course {
     @OneToMany(mappedBy = "course")
     private List<Subscription> subscriptions;
 
+    @OneToMany(mappedBy = "course")
+    private List<LinkedPurchaseList> linkedPurchaseList;
+
     public int getId() {
         return id;
     }
@@ -120,6 +123,14 @@ public class Course {
 
     public void setSubscriptions(List<Subscription> subscriptions) {
         this.subscriptions = subscriptions;
+    }
+
+    public List<LinkedPurchaseList> getStudentsCourses() {
+        return linkedPurchaseList;
+    }
+
+    public void setStudentsCourses(List<LinkedPurchaseList> linkedPurchaseList) {
+        this.linkedPurchaseList = linkedPurchaseList;
     }
 
 }
