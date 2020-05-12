@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="ImageResizer.src.MainForm">
+  <grid id="27dc6" binding="rootPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="500" height="400"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <grid id="4fe77" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints border-constraint="North"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="e2e29" class="javax.swing.JLabel" binding="text1">
+            <constraints/>
+            <properties>
+              <horizontalAlignment value="4"/>
+              <horizontalTextPosition value="4"/>
+              <preferredSize width="133" height="55"/>
+              <requestFocusEnabled value="false"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="db357" class="javax.swing.JButton" binding="copyFromButton" default-binding="true">
+            <constraints/>
+            <properties>
+              <font name="DFGothic-EB" size="11" style="1"/>
+              <margin top="0" left="0" bottom="0" right="0"/>
+              <maximumSize width="91" height="91"/>
+              <minimumSize width="91" height="91"/>
+              <preferredSize width="91" height="55"/>
+              <text value="&lt;-Copy from"/>
+            </properties>
+          </component>
+          <component id="827ec" class="javax.swing.JButton" binding="copyToButton" default-binding="true">
+            <constraints/>
+            <properties>
+              <font name="DFGothic-EB" size="11" style="1"/>
+              <preferredSize width="91" height="55"/>
+              <text value="Copy to-&gt;"/>
+            </properties>
+          </component>
+          <component id="83d90" class="javax.swing.JLabel" binding="text2">
+            <constraints/>
+            <properties>
+              <preferredSize width="133" height="55"/>
+              <text value=""/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="b9d6b" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+        <constraints border-constraint="Center"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="64120" class="javax.swing.JLabel">
+            <constraints/>
+            <properties>
+              <horizontalAlignment value="0"/>
+              <text value="How many times to reduce the file?"/>
+            </properties>
+          </component>
+          <component id="84190" class="javax.swing.JSlider" binding="slider">
+            <constraints/>
+            <properties>
+              <maximumSize width="100" height="22"/>
+              <minimumSize width="100" height="22"/>
+              <preferredSize width="100" height="33"/>
+              <value value="1"/>
+            </properties>
+          </component>
+          <component id="7c12e" class="javax.swing.JLabel" binding="value">
+            <constraints/>
+            <properties>
+              <preferredSize width="70" height="33"/>
+              <requestFocusEnabled value="false"/>
+              <text value=""/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="ddc61" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints border-constraint="South"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="ca5db" class="javax.swing.JButton" binding="sTARTButton">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                <maximum-size width="200" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <horizontalTextPosition value="0"/>
+              <label value="START"/>
+              <maximumSize width="100" height="30"/>
+              <minimumSize width="100" height="30"/>
+              <preferredSize width="100" height="30"/>
+              <text value="START"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>
