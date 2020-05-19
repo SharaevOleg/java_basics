@@ -1,40 +1,41 @@
 package Transactions.src;
 
 public class Account {
-    private long money;
-    private String accNumber;
-    private boolean locked;
 
-    public Account(long money, String accNumber) {
-        this.money = money;
+    private long balance;
+    private int accNumber;
+    private boolean isBlocked = false;
+
+    public Account(int accNumber,long balance) {
         this.accNumber = accNumber;
+        this.balance = balance;
     }
 
-    public long getMoney() {
-        return money;
+    public long getBalance() {
+        return balance;
     }
 
-    public void setMoney(long money) {
-        this.money = money;
+    public void setIsBlocked(boolean isBlocked) {
+        this.isBlocked = isBlocked;
     }
 
-    public String getAccNumber() {
-        return accNumber;
+    public boolean isBlocked() {
+        return isBlocked;
     }
 
-    public void setAccNumber(String accNumber) {
-        this.accNumber = accNumber;
+    public synchronized boolean withdrawMoney(long money) {
+        if (balance >= money) {
+            balance -= money;
+            return true;
+        }
+        return false;
     }
 
-    public boolean isLocked() {
-        return locked;
+    public synchronized void putMoney(long money) {
+        balance += money;
     }
 
-    public void setLocked(boolean locked) {
-        this.locked = locked;
-    }
-
-    public void addMoney(long money) {
-        setMoney(getMoney() + money);
+    public synchronized void blockAccount() {
+        isBlocked = true;
     }
 }
