@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Forms</title>
+    <script src="/js/jquery-3.4.0.min.js"></script>
+    <script src="/js/main.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+</head>
+<body>
+<div id="form-form">
+    <form>
+        <h2>Форма заявки на кредит</h2>
+
+        <label>ПЕРСОНАЛЬНЫЕ ДАННЫЕ:</label>
+        <input type="text" name="fIO" value="">
+
+        <label>ПАСПОРТНЫЕ ДАННЫЕ:</label>
+        <input type="text" name="pasport" value="">
+
+        <label>АДРЕС ПОСТОЯННОЙ РЕГИСТРАЦИИ:</label>
+        <input type="text" name="adress" value="">
+
+        <label>ЗАПРАШИВАЕМАЯ СУММА:</label>
+        <input type="text" name="summ" value="">
+
+        <label>СРОК:</label>
+        <input type="text" name="time" value="">
+
+
+        <hr>
+        <button id="save-form">Сохранить</button>
+    </form>
+</div>
+<!--    <h1>Библиотека (<span th:text="${formsCount}">0</span>)</h1>-->
+<h1>Заявка на кредит</h1>
+<button id="show-add-form-form">Оформить заявку</button>
+<br><br>
+<div id="form-list">
+    <div th:each="form : ${forms}">
+        <a href="#" class="form-link" th:attr="data-id=${form.id}" th:text="${form.id}"></a>
+    </div>
+</div>
+<p th:text="${someParameter}"></p>
+</body>
+</html>
