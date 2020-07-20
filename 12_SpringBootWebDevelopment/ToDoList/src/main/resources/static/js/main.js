@@ -8,7 +8,7 @@ $(function(){
             .append('<div>' + formCode + '&emsp;' + formTwo +'</div>');
     };
 
-    //Delete book
+    //Delete form
         $(document).on('click', '.delete', function(){
             var link = $(this);
             var formId = link.data('id');

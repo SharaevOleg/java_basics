@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,23 +19,26 @@ public class FormController {
     private FormRepository formRepository;
 
     @GetMapping("/forms/")
-    public synchronized List<Form> list() {
+    public List<Form> list() {
         Iterable<Form> bookIterable = formRepository.findAll();
-        ArrayList<Form> forms = new ArrayList<>();
-        for (Form form : bookIterable){
-            forms.add(form);
-        }
+        List<Form> forms = Collections.synchronizedList(new ArrayList<>());
+//        ArrayList<Form> forms = new ArrayList<>();
+            synchronized (forms) {
+                for (Form form : bookIterable){
+                    forms.add(form);
+                }
+            }
         return forms;
     }
 
     @PostMapping("/forms/")
-    public synchronized int add(Form form) {
+    public int add(Form form) {
         Form newForm = formRepository.save(form);
         return newForm.getId();
     }
 
     @GetMapping("/forms/{id}")
-    public synchronized ResponseEntity get(@PathVariable int id){
+    public ResponseEntity get(@PathVariable int id){
         Optional<Form> optionalForm = formRepository.findById(id);
         if (!optionalForm.isPresent()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
@@ -43,7 +47,7 @@ public class FormController {
     }
 
     @RequestMapping("/remove/{id}")
-    public synchronized String removeForm(@PathVariable("id") int id){
+    public String removeForm(@PathVariable("id") int id){
         this.formRepository.deleteById(id);
         return null;
     }
