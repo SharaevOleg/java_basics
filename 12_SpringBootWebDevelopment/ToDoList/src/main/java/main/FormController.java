@@ -1,7 +1,7 @@
 package main;
 
-import main.model.FormRepository;
 import main.model.Form;
+import main.model.FormRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +18,7 @@ public class FormController {
     private FormRepository formRepository;
 
     @GetMapping("/forms/")
-    public List<Form> list() {
+    public synchronized List<Form> list() {
         Iterable<Form> bookIterable = formRepository.findAll();
         ArrayList<Form> forms = new ArrayList<>();
         for (Form form : bookIterable){
@@ -28,13 +28,13 @@ public class FormController {
     }
 
     @PostMapping("/forms/")
-    public int add(Form form) {
+    public synchronized int add(Form form) {
         Form newForm = formRepository.save(form);
         return newForm.getId();
     }
 
     @GetMapping("/forms/{id}")
-    public ResponseEntity get(@PathVariable int id){
+    public synchronized ResponseEntity get(@PathVariable int id){
         Optional<Form> optionalForm = formRepository.findById(id);
         if (!optionalForm.isPresent()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
@@ -42,6 +42,11 @@ public class FormController {
         return new ResponseEntity(optionalForm.get(), HttpStatus.OK);
     }
 
+    @RequestMapping("/remove/{id}")
+    public synchronized String removeForm(@PathVariable("id") int id){
+        this.formRepository.deleteById(id);
+        return null;
+    }
 }
 
 
