@@ -8,13 +8,18 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Forms" />
         <module name="BookLibrary" />
+      </profile>
+      <profile name="Annotation profile for booklibrary" enabled="true">
+        <sourceOutputDir name="../Forms/target/generated-sources/annotations" />
+        <sourceTestOutputDir name="../Forms/target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
         <module name="ToDoList" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="BookLibrary" target="8" />
       <module name="Forms" target="8" />
-      <module name="ToDoList" target="11" />
+      <module name="ToDoList" target="8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
