@@ -2,7 +2,7 @@ $(function(){
 
     const appendForm = function(data){
         var formCode = '<a href="#" class="form-link" data-id="' +
-            data.id + '">' + data.name +'</a><br>';
+            data.id + '">' + data.name +'</a>''<br>';
         var formTwo = '<button class="delete" data-id="' + data.id + '"> X </button>';
         $('#form-list')
             .append('<div>' + formCode + '&emsp;' + formTwo +'</div>');
