@@ -29,8 +29,6 @@ $(function(){
                 return false;
         });
 
-
-
     //Loading forms on load page
     $.get('/forms/', function(response)
     {
