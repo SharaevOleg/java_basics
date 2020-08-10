@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,13 +20,11 @@ public class FormController {
     @GetMapping("/forms/")
     public List<Form> list() {
         Iterable<Form> bookIterable = formRepository.findAll();
-        List<Form> forms = Collections.synchronizedList(new ArrayList<>());
-//        ArrayList<Form> forms = new ArrayList<>();
-        synchronized (forms) {
-            for (Form form : bookIterable) {
-                forms.add(form);
-            }
+        ArrayList<Form> forms = new ArrayList<>();
+        for (Form form : bookIterable) {
+            forms.add(form);
         }
+
         return forms;
     }
 
