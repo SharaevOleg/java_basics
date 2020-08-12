@@ -7,16 +7,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Forms" />
+        <module name="booklibrary" />
         <module name="BookLibrary" />
-      </profile>
-      <profile name="Annotation profile for booklibrary" enabled="true">
-        <sourceOutputDir name="../Forms/target/generated-sources/annotations" />
-        <sourceTestOutputDir name="../Forms/target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
         <module name="ToDoList" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="booklibrary" target="8" />
       <module name="BookLibrary" target="8" />
       <module name="Forms" target="8" />
       <module name="ToDoList" target="8" />

@@ -30,12 +30,12 @@ $(function(){
         });
 
     //Loading forms on load page
-    $.get('/forms/', function(response)
-    {
-        for(i in response) {
-            appendForm(response[i]);
-        }
-    });
+//    $.get('/forms/', function(response)
+//    {
+//        for(i in response) {
+//            appendForm(response[i]);
+//        }
+//    });
 
     //Show adding form
     $('#show-add-form-form').click(function(){
